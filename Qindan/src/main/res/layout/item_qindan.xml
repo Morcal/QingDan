@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <cn.go.lyqdh.jsoup.weight.HWRatioImageView
+                <cn.go.lyqdh.qindan.weight.HWRatioImageView
                     android:id="@+id/riv_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_action_home"
+            android:checked="true"
+            android:icon="@drawable/ic_account_balance_black_18dp"
+            android:title="首页" />
+        <item
+            android:id="@+id/nav_action_jinxuan"
+            android:checked="true"
+            android:icon="@drawable/ic_dashboard_black_18dp"
+            android:title="精选" />
+        <item
+            android:id="@+id/nav_action_discovery"
+            android:checked="true"
+            android:icon="@drawable/ic_visibility_black_18dp"
+            android:title="发现" />
+        <item
+            android:id="@+id/nav_action_collect"
+            android:checked="true"
+            android:icon="@drawable/ic_bookmark_black_18dp"
+            android:title="收藏" />
+
+        <item
+            android:id="@+id/nav_action_owen"
+            android:checked="true"
+            android:icon="@drawable/ic_face_black_18dp"
+            android:title="我的" />
+        <item
+            android:id="@+id/nav_action_create"
+            android:checked="true"
+            android:icon="@drawable/ic_create_black_18dp"
+            android:title="发布" />
+    </group>
+</menu>

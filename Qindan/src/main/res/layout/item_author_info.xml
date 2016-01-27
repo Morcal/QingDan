@@ -9,7 +9,7 @@
     android:paddingRight="10dp"
     android:paddingTop="17dp">
 
-    <cn.go.lyqdh.jsoup.weight.CircleImageView
+    <cn.go.lyqdh.qindan.weight.CircleImageView
         android:id="@+id/civ_avatar"
         android:layout_width="35dp"
         android:layout_height="35dp"

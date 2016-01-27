@@ -22,6 +22,8 @@
     <color name="c8_orange">@color/orange</color>
     <color name="c8_yellow">#FFD600</color>
     <color name="c9_light_gray">#F4F4F4</color>
+    <color name="c6_grey_alpha_50">#7f929292</color>
+    <color name="c6_grey_alpha_30">#4B929292</color>
 
     <color name="dialog_bg">#a6000000</color>
 

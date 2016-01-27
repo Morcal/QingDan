@@ -9,15 +9,6 @@
     tools:context=".View.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Click"
-        android:textSize="18sp"
-        android:visibility="gone" />
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
@@ -27,7 +18,6 @@
             android:id="@+id/list_articl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button"
             android:divider="@null"
             android:dividerHeight="0dp">
 
