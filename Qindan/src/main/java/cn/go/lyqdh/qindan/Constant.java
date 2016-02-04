@@ -19,5 +19,8 @@ public class Constant {
     public static final String DESIGN = "/topic/VNcE6F2BrKj6GbMp";
     public static final String READ = "/topic/VNWgQgPfOYXrFL_T";
 
+    // 判断是否登录
+    public static boolean isLogin = false;
+
 
 }

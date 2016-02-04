@@ -5,7 +5,7 @@ package cn.go.lyqdh.qindan.model;
  */
 public class Article {
     // id
-    private int id;
+    private String id;
     // 标题
     private String title;
     // 简介
@@ -26,11 +26,11 @@ public class Article {
         this.title = title;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

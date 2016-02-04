@@ -1,11 +1,14 @@
 package cn.go.lyqdh.qindan.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.bmob.v3.BmobUser;
 
 /**
  * Created by lyqdh on 2016/1/4.
  */
-public class User extends BmobUser{
+public class User extends BmobUser {
     // id
     private int id;
     // nickname
@@ -14,6 +17,14 @@ public class User extends BmobUser{
     private String avatar;
     // 作品数
     private String count;
+    // 收藏的清单
+    private Article collect;
+    // 喜欢的清单
+    private Article like;
+
+    // 收藏集
+    private List<Article> clollects = new ArrayList<>();
+    private List<Article> likes = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -45,5 +56,41 @@ public class User extends BmobUser{
 
     public void setCount(String count) {
         this.count = count;
+    }
+
+    public Article getCollect() {
+        return collect;
+    }
+
+    public void setCollect(Article collect) {
+        this.collect = collect;
+    }
+
+    public Article getLike() {
+        return like;
+    }
+
+    public void setLike(Article like) {
+        this.like = like;
+    }
+
+    public void addCollect(Article article) {
+        clollects.add(article);
+    }
+
+    public List<Article> getClollects() {
+        return clollects;
+    }
+
+    public void setClollects(List<Article> clollects) {
+        this.clollects = clollects;
+    }
+
+    public List<Article> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Article> likes) {
+        this.likes = likes;
     }
 }

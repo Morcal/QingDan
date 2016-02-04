@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -81,31 +80,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         adapter = new ArticleAdapter(this);
         initData();
         initEvent();
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Article article = (Article) parent.getItemAtPosition(position);
-                String shareUrl = article.getShareUrl();
-                Log.i(TAG, "shareUrl:" + shareUrl);
-                Intent intent = new Intent(MainActivity.this, DetialActivity.class);
-                intent.putExtra("SHAREURL", shareUrl);
-                startActivity(intent);
-            }
-        });
-
-        drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, R.string.open, R.string.close) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-            }
-        };
-        drawerToggle.syncState();
-        drawerLayout.setDrawerListener(drawerToggle);
     }
 
     private void initEvent() {
@@ -114,11 +88,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Article article = (Article) parent.getItemAtPosition(position);
                 String shareUrl = article.getShareUrl();
-                Log.i(TAG, "shareUrl:" + shareUrl);
-                EventBus.getDefault().post(new Article(article.getTitle()));
-                Log.i(TAG, "evenbus 消息已发送");
+                String title = article.getTitle();
                 Intent intent = new Intent(MainActivity.this, DetialActivity.class);
                 intent.putExtra("SHAREURL", shareUrl);
+                intent.putExtra("TITLE", title);
                 startActivity(intent);
             }
         });
@@ -159,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 startActivityForResult(intent, 1);
             }
         });
+
     }
 
     private void selectMenuItem(int itemId) {
@@ -169,18 +143,17 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 break;
             case 2131493021: // 发现
                 break;
-            case 2131493023: // 收藏
+            case 2131493025: // 收藏
                 drawerLayout.closeDrawers();
                 Intent intent3 = new Intent(MainActivity.this, CollectActivity.class);
                 startActivity(intent3);
                 break;
-            case 2131493024: // 我的
+            case 2131493027: // 我的
                 break;
-            case 2131493025: // 发布
+            case 2131493026: // 发布
                 break;
         }
     }
-
 
     private void initData() {
         ViewUtils.showDialog(MainActivity.this, "Loading");
@@ -301,6 +274,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
 }

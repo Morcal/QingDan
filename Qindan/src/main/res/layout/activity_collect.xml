@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,22 +24,24 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="阅览记录"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
+
     <Button
         android:id="@+id/btn_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Note" />
+        android:text="Add Note"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/cur_marginside"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center"
-        android:text="收藏记录" />
+        android:text="收藏记录"/>
 
     <ScrollView
         android:layout_width="match_parent"

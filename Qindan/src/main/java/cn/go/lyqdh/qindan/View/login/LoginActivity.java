@@ -1,5 +1,6 @@
 package cn.go.lyqdh.qindan.View.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -22,6 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.v3.listener.SaveListener;
 import cn.go.lyqdh.qindan.ArticleManager;
+import cn.go.lyqdh.qindan.Constant;
 import cn.go.lyqdh.qindan.R;
 import cn.go.lyqdh.qindan.View.MainActivity;
 import cn.go.lyqdh.qindan.adapter.ArticleAdapter;
@@ -174,6 +176,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess() {
                 ViewUtils.showToastShort(LoginActivity.this, "登录成功");
+                Constant.isLogin = true;
                 Intent intent = new Intent();
                 intent.putExtra("USERNAME", name.getText().toString().trim());
                 setResult(1, intent);
