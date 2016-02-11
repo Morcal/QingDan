@@ -29,6 +29,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.go.lyqdh.qindan.Constant;
 import cn.go.lyqdh.qindan.R;
+import cn.go.lyqdh.qindan.View.collect.CollectActivity;
 import cn.go.lyqdh.qindan.View.login.LoginActivity;
 import cn.go.lyqdh.qindan.adapter.ArticleAdapter;
 import cn.go.lyqdh.qindan.model.Article;
@@ -37,7 +38,6 @@ import cn.go.lyqdh.qindan.model.Image;
 import cn.go.lyqdh.qindan.model.User;
 import cn.go.lyqdh.qindan.util.ViewUtils;
 import cn.go.lyqdh.qindan.weight.CircleImageView;
-import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -136,21 +136,28 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     private void selectMenuItem(int itemId) {
+        drawerLayout.closeDrawers();
         switch (itemId) {
-            case 2131493019: // 首页
+            case R.id.nav_action_home: // 首页
                 break;
-            case 2131493020: // 精选
+            case R.id.nav_action_jinxuan: // 精选
                 break;
-            case 2131493021: // 发现
+            case R.id.nav_action_discovery: // 发现
+                Intent intent2 = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent2);
                 break;
-            case 2131493025: // 收藏
-                drawerLayout.closeDrawers();
-                Intent intent3 = new Intent(MainActivity.this, CollectActivity.class);
-                startActivity(intent3);
+            case R.id.nav_action_collect: // 收藏
+                if (Constant.isLogin) {
+                    Intent intent3 = new Intent(MainActivity.this, CollectActivity.class);
+                    startActivity(intent3);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
-            case 2131493027: // 我的
+            case R.id.nav_action_owen: // 我的
                 break;
-            case 2131493026: // 发布
+            case R.id.nav_action_create: // 发布
                 break;
         }
     }

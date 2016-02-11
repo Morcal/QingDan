@@ -36,7 +36,7 @@
             android:name=".View.login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".View.CollectActivity"
+            android:name=".View.collect.CollectActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

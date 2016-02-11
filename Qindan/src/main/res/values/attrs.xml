@@ -37,4 +37,20 @@
             <enum name="Bottom" value="3" />
         </attr>
     </declare-styleable>
+
+    <!--TabPager-->
+    <declare-styleable name="TabPageIndicator">
+        <attr name="tpi_tabPadding" format="reference|dimension" />
+        <attr name="tpi_tabRipple" format="reference" />
+        <attr name="tpi_indicatorColor" format="reference|color" />
+        <attr name="tpi_indicatorHeight" format="reference|dimension" />
+        <attr name="tpi_indicatorAtTop" format="reference|boolean" />
+        <attr name="tpi_tabSingleLine" format="reference|boolean" />
+        <attr name="tpi_centerCurrentTab" format="reference|boolean" />
+        <attr name="android:textAppearance" />
+        <attr name="tpi_mode" format="integer">
+            <enum name="scroll" value="0x00000000" />
+            <enum name="fixed" value="0x00000001" />
+        </attr>
+    </declare-styleable>
 </resources>
