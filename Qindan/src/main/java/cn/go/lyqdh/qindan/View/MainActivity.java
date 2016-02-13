@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -39,7 +41,7 @@ import cn.go.lyqdh.qindan.model.User;
 import cn.go.lyqdh.qindan.util.ViewUtils;
 import cn.go.lyqdh.qindan.weight.CircleImageView;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String MUSIC = Constant.QINDAN + Constant.MUSIC; //音乐
     public static final String HOSTNAME = "https://qdan.me";  // Host Name
@@ -56,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     public Toolbar toolbar;
     @Bind(R.id.nav_view)
     public NavigationView navigationView;
-    @Bind(R.id.list_articl)
-    public ListView listView;
+    //    @Bind(R.id.list_articl)
+//    public ListView listView;
     @Bind(R.id.avatar)
     public CircleImageView avatar;
     @Bind(R.id.nickname)
@@ -65,36 +67,51 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Bind(R.id.signature)
     public TextView signature;
     //@Bind(R.id.swipe_container)
-    public SwipeRefreshLayout swipeRefresh;
+//    public SwipeRefreshLayout swipeRefresh;
     private ActionBarDrawerToggle drawerToggle;
     private ProgressDialog dialog;
+
+    @Bind(R.id.sliding_tabs)
+    TabLayout tabLayout;
+    @Bind(R.id.viewpager)
+    ViewPager viewPager;
+    private MainFragmentPagerAdapter pagerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
-        swipeRefresh.setColorSchemeColors(Color.parseColor("#1C86EE"));
-        swipeRefresh.setOnRefreshListener(this);
-        adapter = new ArticleAdapter(this);
-        initData();
+//        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+//        swipeRefresh.setColorSchemeColors(Color.parseColor("#1C86EE"));
+//        swipeRefresh.setOnRefreshListener(this);
+//        adapter = new ArticleAdapter(this);
+//        initData();
+        initView();
         initEvent();
     }
 
+    private void initView() {
+        pagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager(), this);
+        viewPager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+    }
+
     private void initEvent() {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Article article = (Article) parent.getItemAtPosition(position);
-                String shareUrl = article.getShareUrl();
-                String title = article.getTitle();
-                Intent intent = new Intent(MainActivity.this, DetialActivity.class);
-                intent.putExtra("SHAREURL", shareUrl);
-                intent.putExtra("TITLE", title);
-                startActivity(intent);
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Article article = (Article) parent.getItemAtPosition(position);
+//                String shareUrl = article.getShareUrl();
+//                String title = article.getTitle();
+//                Intent intent = new Intent(MainActivity.this, DetialActivity.class);
+//                intent.putExtra("SHAREURL", shareUrl);
+//                intent.putExtra("TITLE", title);
+//                startActivity(intent);
+//            }
+//        });
 
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, R.string.open, R.string.close) {
             @Override
@@ -162,54 +179,31 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
     }
 
-    private void initData() {
-        ViewUtils.showDialog(MainActivity.this, "Loading");
-        Dao.getEntity(MUSIC, new Dao.EntityListener() {
-            @Override
-            public void onError() {
-                ViewUtils.showToastShort(MainActivity.this, getString(R.string.error));
-            }
+//    private void initData() {
+//        ViewUtils.showDialog(MainActivity.this, "Loading");
+//        Dao.getEntity(MUSIC, new Dao.EntityListener() {
+//            @Override
+//            public void onError() {
+//                ViewUtils.showToastShort(MainActivity.this, getString(R.string.error));
+//            }
+//
+//            @Override
+//            public void onSuccess(String result) {
+////                dialog.dismiss();
+//                ViewUtils.hideDialog();
+//                Document doc = Jsoup.parse(result);
+//                List<Article> list = getBodyInfo(doc);
+//                if (list.size() != 0 && list != null) {
+//                    articles1.addAll(list);
+//                    adapter.setItems(articles1);
+//                    adapter.notifyDataSetChanged();
+//                    listView.setAdapter(adapter);
+//                }
+//            }
+//        });
+//
+//    }
 
-            @Override
-            public void onSuccess(String result) {
-//                dialog.dismiss();
-                ViewUtils.hideDialog();
-                Document doc = Jsoup.parse(result);
-                List<Article> list = getBodyInfo(doc);
-                if (list.size() != 0 && list != null) {
-                    articles1.addAll(list);
-                    adapter.setItems(articles1);
-                    adapter.notifyDataSetChanged();
-                    listView.setAdapter(adapter);
-                }
-            }
-        });
-
-    }
-
-    @Override
-    public void onRefresh() {
-        pageCount++;
-        Dao.getEntity(MUSIC + "?page=" + pageCount, new Dao.EntityListener() {
-            @Override
-            public void onError() {
-                ViewUtils.showToastShort(MainActivity.this, getString(R.string.error));
-            }
-
-            @Override
-            public void onSuccess(String result) {
-                Document doc = Jsoup.parse(result);
-                List<Article> list = getBodyInfo(doc);
-                if (list.size() != 0 && list != null) {
-                    articles1.addAll(list);
-                    adapter.setItems(articles1);
-                    adapter.notifyDataSetChanged();
-                    listView.setAdapter(adapter);
-                    swipeRefresh.setRefreshing(false);
-                }
-            }
-        });
-    }
 
     public List getBodyInfo(Document doc) {
         articles1 = new ArrayList<>();
