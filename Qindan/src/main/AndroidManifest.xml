@@ -10,14 +10,14 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
-        android:name="cn.go.lyqdh.qindan.Qindan"
+        android:name=".app.Qindan"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".View.MainActivity"
+            android:name=".ui.module.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -27,16 +27,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="cn.go.lyqdh.qindan.View.HomeActivity"
+            android:name=".ui.module.home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="cn.go.lyqdh.qindan.View.DetialActivity"
+            android:name=".ui.module.detail.DetialActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".View.login.LoginActivity"
+            android:name=".ui.module.login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".View.collect.CollectActivity"
+            android:name=".ui.module.collect.CollectActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

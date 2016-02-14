@@ -1,0 +1,12 @@
+    -optimizationpasses 7  
+    -dontskipnonpubliclibraryclasses  
+    -dontskipnonpubliclibraryclassmembers  
+    -dontpreverify  
+    -verbose  
+    -allowaccessmodification  
+    -repackageclasses   
+    -dontusemixedcaseclassnames  
+    -dontoptimize  
+    -dontwarn android.support.**
+    -dontwarn com.squareup.okhttp.internal.**
+    -dontwarn com.squareup.okhttp.**

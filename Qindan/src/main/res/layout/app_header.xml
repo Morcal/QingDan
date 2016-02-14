@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@drawable/nav_bg"
+    android:background="@drawable/behaver_top"
     android:orientation="vertical">
 
     <cn.go.lyqdh.qindan.weight.CircleImageView
@@ -13,7 +13,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/default_avatar" />
+        android:src="@drawable/default_avator" />
 
     <TextView
         android:id="@+id/nickname"
